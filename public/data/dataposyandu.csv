@@ -1,0 +1,409 @@
+Jenis Kelamin,Usia (bulan),IMT,Status Gizi
+Perempuan,55,16.812053060657,Berisiko Gizi Lebih
+Perempuan,56,17.2335600907029,Berisiko Gizi Lebih
+Perempuan,57,17.5198221064217,Berisiko Gizi Lebih
+Perempuan,58,17.8792030727073,Berisiko Gizi Lebih
+Perempuan,59,18.0459618140301,Berisiko Gizi Lebih
+Perempuan,60,18.3139711479018,Berisiko Gizi Lebih
+Laki-Laki,31,18.7654320987654,Berisiko Gizi Lebih
+Laki-Laki,32,18.9590629151069,Berisiko Gizi Lebih
+Laki-Laki,33,18.9035916824197,Berisiko Gizi Lebih
+Laki-Laki,37,18.4702945045505,Berisiko Gizi Lebih
+Laki-Laki,38,18.5992135189712,Berisiko Gizi Lebih
+Laki-Laki,39,18.811775959188,Berisiko Gizi Lebih
+Laki-Laki,40,18.3256976259892,Berisiko Gizi Lebih
+Laki-Laki,41,18.3654729109275,Berisiko Gizi Lebih
+Laki-Laki,42,18.5,Berisiko Gizi Lebih
+Laki-Laki,43,18.5,Berisiko Gizi Lebih
+Laki-Laki,44,18.3455070494309,Berisiko Gizi Lebih
+Laki-Laki,45,19.4132349729428,Berisiko Gizi Lebih
+Laki-Laki,46,19.2233756247597,Berisiko Gizi Lebih
+Laki-Laki,47,18.8519181826751,Berisiko Gizi Lebih
+Laki-Laki,48,19.323216137242,Berisiko Gizi Lebih
+Laki-Laki,49,19.1383136094675,Berisiko Gizi Lebih
+Laki-Laki,50,18.491124260355,Berisiko Gizi Lebih
+Laki-Laki,51,19.0471829857375,Berisiko Gizi Lebih
+Laki-Laki,52,18.9569160997732,Berisiko Gizi Lebih
+Laki-Laki,53,19.047619047619,Berisiko Gizi Lebih
+Laki-Laki,54,19.312922748309,Berisiko Gizi Lebih
+Laki-Laki,31,18.7654321,Berisiko Gizi Lebih
+Laki-Laki,32,18.95906292,Berisiko Gizi Lebih
+Laki-Laki,33,18.90359168,Berisiko Gizi Lebih
+Laki-Laki,37,18.4702945,Berisiko Gizi Lebih
+Laki-Laki,38,18.59921352,Berisiko Gizi Lebih
+Laki-Laki,39,18.81177596,Berisiko Gizi Lebih
+Laki-Laki,40,18.32569763,Berisiko Gizi Lebih
+Laki-Laki,41,18.36547291,Berisiko Gizi Lebih
+Laki-Laki,42,18.5,Berisiko Gizi Lebih
+Laki-Laki,43,18.5,Berisiko Gizi Lebih
+Laki-Laki,44,18.34550705,Berisiko Gizi Lebih
+Laki-Laki,45,19.41323497,Berisiko Gizi Lebih
+Laki-Laki,46,19.22337562,Berisiko Gizi Lebih
+Laki-Laki,47,18.85191818,Berisiko Gizi Lebih
+Laki-Laki,48,19.32321614,Berisiko Gizi Lebih
+Laki-Laki,49,19.13831361,Berisiko Gizi Lebih
+Laki-Laki,50,18.49112426,Berisiko Gizi Lebih
+Laki-Laki,51,19.04718299,Berisiko Gizi Lebih
+Laki-Laki,52,18.9569161,Berisiko Gizi Lebih
+Laki-Laki,53,19.04761905,Berisiko Gizi Lebih
+Laki-Laki,54,19.31292275,Berisiko Gizi Lebih
+Perempuan,55,16.81205306,Berisiko Gizi Lebih
+Perempuan,56,17.23356009,Berisiko Gizi Lebih
+Perempuan,57,17.51982211,Berisiko Gizi Lebih
+Perempuan,58,17.87920307,Berisiko Gizi Lebih
+Perempuan,59,18.04596181,Berisiko Gizi Lebih
+Perempuan,60,18.31397115,Berisiko Gizi Lebih
+Perempuan,24,11.7647058823529,Gizi Buruk
+Perempuan,25,11.901097773674,Gizi Buruk
+Perempuan,26,12.0378920009576,Gizi Buruk
+Perempuan,27,11.9817713687404,Gizi Buruk
+Perempuan,28,11.5733018902606,Gizi Buruk
+Perempuan,29,11.437145397434,Gizi Buruk
+Perempuan,30,11.7094583830872,Gizi Buruk
+Perempuan,31,11.8983234180638,Gizi Buruk
+Perempuan,32,12.0335316387236,Gizi Buruk
+Perempuan,33,11.8431748321768,Gizi Buruk
+Perempuan,34,11.9777563643607,Gizi Buruk
+Perempuan,35,11.5740117678092,Gizi Buruk
+Perempuan,36,11.3602191854055,Gizi Buruk
+Perempuan,37,11.6275184603562,Gizi Buruk
+Perempuan,38,12.0284673727823,Gizi Buruk
+Perempuan,40,11.706969238608,Gizi Buruk
+Perempuan,41,11.9730367213036,Gizi Buruk
+Perempuan,42,11.3621350244418,Gizi Buruk
+Perempuan,43,12.0227242700489,Gizi Buruk
+Perempuan,44,11.8090244564897,Gizi Buruk
+Laki-Laki,24,12.6288285672812,Gizi Buruk
+Laki-Laki,25,12.7739875163304,Gizi Buruk
+Laki-Laki,26,12.6214636595073,Gizi Buruk
+Laki-Laki,27,12.6214636595073,Gizi Buruk
+Laki-Laki,28,12.6214636595073,Gizi Buruk
+Laki-Laki,29,12.5612180955766,Gizi Buruk
+Laki-Laki,30,12.2757358661317,Gizi Buruk
+Laki-Laki,31,12.3299319727891,Gizi Buruk
+Laki-Laki,32,12.046485260771,Gizi Buruk
+Laki-Laki,33,12.3299319727891,Gizi Buruk
+Laki-Laki,34,12.4716553287982,Gizi Buruk
+Laki-Laki,35,12.2423306020272,Gizi Buruk
+Laki-Laki,36,11.9608977146242,Gizi Buruk
+Laki-Laki,37,12.3830470457286,Gizi Buruk
+Laki-Laki,38,11.9043450859564,Gizi Buruk
+Laki-Laki,39,12.0443962046147,Gizi Buruk
+Laki-Laki,40,12.184447323273,Gizi Buruk
+Laki-Laki,41,12.0443962046147,Gizi Buruk
+Laki-Laki,42,11.8762190589563,Gizi Buruk
+Laki-Laki,43,11.9875830941625,Gizi Buruk
+Laki-Laki,44,12.1269735952574,Gizi Buruk
+Laki-Laki,24,12.62882857,Gizi Buruk
+Laki-Laki,25,12.77398752,Gizi Buruk
+Laki-Laki,26,12.62146366,Gizi Buruk
+Laki-Laki,27,12.62146366,Gizi Buruk
+Laki-Laki,28,12.62146366,Gizi Buruk
+Laki-Laki,29,12.5612181,Gizi Buruk
+Laki-Laki,30,12.27573587,Gizi Buruk
+Laki-Laki,31,12.32993197,Gizi Buruk
+Laki-Laki,32,12.04648526,Gizi Buruk
+Laki-Laki,33,12.32993197,Gizi Buruk
+Laki-Laki,34,12.47165533,Gizi Buruk
+Laki-Laki,35,12.2423306,Gizi Buruk
+Laki-Laki,36,11.96089771,Gizi Buruk
+Laki-Laki,37,12.38304705,Gizi Buruk
+Laki-Laki,38,11.90434509,Gizi Buruk
+Laki-Laki,39,12.0443962,Gizi Buruk
+Laki-Laki,40,12.18444732,Gizi Buruk
+Laki-Laki,41,12.0443962,Gizi Buruk
+Laki-Laki,42,11.87621906,Gizi Buruk
+Laki-Laki,43,11.98758309,Gizi Buruk
+Laki-Laki,44,12.1269736,Gizi Buruk
+Perempuan,24,11.76470588,Gizi Buruk
+Perempuan,25,11.90109777,Gizi Buruk
+Perempuan,26,12.037892,Gizi Buruk
+Perempuan,27,11.98177137,Gizi Buruk
+Perempuan,28,11.57330189,Gizi Buruk
+Perempuan,29,11.4371454,Gizi Buruk
+Perempuan,30,11.70945838,Gizi Buruk
+Perempuan,31,11.89832342,Gizi Buruk
+Perempuan,32,12.03353164,Gizi Buruk
+Perempuan,33,11.84317483,Gizi Buruk
+Perempuan,34,11.97775636,Gizi Buruk
+Perempuan,35,11.57401177,Gizi Buruk
+Perempuan,36,11.36021919,Gizi Buruk
+Perempuan,37,11.62751846,Gizi Buruk
+Perempuan,38,12.02846737,Gizi Buruk
+Perempuan,40,11.70696924,Gizi Buruk
+Perempuan,41,11.97303672,Gizi Buruk
+Perempuan,42,11.36213502,Gizi Buruk
+Perempuan,43,12.02272427,Gizi Buruk
+Perempuan,44,11.80902446,Gizi Buruk
+Perempuan,24,13.0195569061857,Gizi Kurang
+Perempuan,25,13.0195569061857,Gizi Kurang
+Perempuan,26,12.713214390746,Gizi Kurang
+Perempuan,27,12.734292250509,Gizi Kurang
+Perempuan,28,12.6412849494349,Gizi Kurang
+Perempuan,29,12.4925639500297,Gizi Kurang
+Perempuan,30,12.813413139787,Gizi Kurang
+Perempuan,31,12.9503332891955,Gizi Kurang
+Perempuan,32,12.6821436858057,Gizi Kurang
+Perempuan,33,12.9083151063143,Gizi Kurang
+Perempuan,34,13.1951665531213,Gizi Kurang
+Perempuan,35,12.7551020408163,Gizi Kurang
+Perempuan,36,12.6945796965713,Gizi Kurang
+Perempuan,37,12.9766814676063,Gizi Kurang
+Perempuan,38,12.6046006792479,Gizi Kurang
+Perempuan,39,12.6046006792479,Gizi Kurang
+Perempuan,40,12.3244984419313,Gizi Kurang
+Perempuan,39,11.8400029799558,Gizi Kurang
+Laki-Laki,25,13.3310249307479,Gizi Kurang
+Laki-Laki,26,12.9847645429363,Gizi Kurang
+Laki-Laki,27,13.6699559998291,Gizi Kurang
+Laki-Laki,28,13.3282070998334,Gizi Kurang
+Laki-Laki,29,13.1573326498355,Gizi Kurang
+Laki-Laki,30,13.4990815498313,Gizi Kurang
+Laki-Laki,31,12.9188205116873,Gizi Kurang
+Laki-Laki,32,13.0888049921042,Gizi Kurang
+Laki-Laki,33,13.2587894725212,Gizi Kurang
+Laki-Laki,34,12.7488360312703,Gizi Kurang
+Laki-Laki,35,12.5788515508534,Gizi Kurang
+Laki-Laki,36,12.9188205116873,Gizi Kurang
+Laki-Laki,37,13.0208113149159,Gizi Kurang
+Laki-Laki,38,12.6826084236194,Gizi Kurang
+Laki-Laki,39,13.1556754933378,Gizi Kurang
+Laki-Laki,40,12.987012987013,Gizi Kurang
+Laki-Laki,25,13.33102493,Gizi Kurang
+Laki-Laki,26,12.98476454,Gizi Kurang
+Laki-Laki,27,13.669956,Gizi Kurang
+Laki-Laki,28,13.3282071,Gizi Kurang
+Laki-Laki,29,13.15733265,Gizi Kurang
+Laki-Laki,30,13.49908155,Gizi Kurang
+Laki-Laki,31,12.91882051,Gizi Kurang
+Laki-Laki,32,13.08880499,Gizi Kurang
+Laki-Laki,33,13.25878947,Gizi Kurang
+Laki-Laki,34,12.74883603,Gizi Kurang
+Laki-Laki,35,12.57885155,Gizi Kurang
+Laki-Laki,36,12.91882051,Gizi Kurang
+Laki-Laki,37,13.02081131,Gizi Kurang
+Laki-Laki,38,12.68260842,Gizi Kurang
+Laki-Laki,39,13.15567549,Gizi Kurang
+Laki-Laki,40,12.98701299,Gizi Kurang
+Perempuan,24,13.01955691,Gizi Kurang
+Perempuan,25,13.01955691,Gizi Kurang
+Perempuan,26,12.71321439,Gizi Kurang
+Perempuan,27,12.73429225,Gizi Kurang
+Perempuan,28,12.64128495,Gizi Kurang
+Perempuan,29,12.49256395,Gizi Kurang
+Perempuan,30,12.81341314,Gizi Kurang
+Perempuan,31,12.95033329,Gizi Kurang
+Perempuan,32,12.68214369,Gizi Kurang
+Perempuan,33,12.90831511,Gizi Kurang
+Perempuan,34,13.19516655,Gizi Kurang
+Perempuan,35,12.75510204,Gizi Kurang
+Perempuan,36,12.6945797,Gizi Kurang
+Perempuan,37,12.97668147,Gizi Kurang
+Perempuan,38,12.60460068,Gizi Kurang
+Perempuan,39,12.60460068,Gizi Kurang
+Perempuan,40,12.32449844,Gizi Kurang
+Perempuan,39,11.84000298,Gizi Kurang
+Perempuan,33,19.780146346353,Gizi Lebih
+Perempuan,34,19.8220274608249,Gizi Lebih
+Perempuan,35,20.2211286848683,Gizi Lebih
+Perempuan,36,20.2211286848683,Gizi Lebih
+Perempuan,37,19.9091082843127,Gizi Lebih
+Perempuan,38,20.3072904499989,Gizi Lebih
+Perempuan,39,19.9091082843127,Gizi Lebih
+Perempuan,40,19.7763808957506,Gizi Lebih
+Laki-Laki,24,18.9291508923743,Gizi Lebih
+Laki-Laki,25,18.8907912713902,Gizi Lebih
+Laki-Laki,26,18.7607345752411,Gizi Lebih
+Laki-Laki,27,18.724173553719,Gizi Lebih
+Laki-Laki,28,18.3057694735513,Gizi Lebih
+Laki-Laki,29,18.4763272057676,Gizi Lebih
+Laki-Laki,30,18.5185185185185,Gizi Lebih
+Laki-Laki,34,18.2825484764543,Gizi Lebih
+Laki-Laki,35,18.3376736111111,Gizi Lebih
+Laki-Laki,36,18.4461805555556,Gizi Lebih
+Laki-Laki,24,18.92915089,Gizi Lebih
+Laki-Laki,25,18.89079127,Gizi Lebih
+Laki-Laki,26,18.76073458,Gizi Lebih
+Laki-Laki,27,18.72417355,Gizi Lebih
+Laki-Laki,28,18.30576947,Gizi Lebih
+Laki-Laki,29,18.47632721,Gizi Lebih
+Laki-Laki,30,18.51851852,Gizi Lebih
+Laki-Laki,34,18.28254848,Gizi Lebih
+Laki-Laki,35,18.33767361,Gizi Lebih
+Laki-Laki,36,18.44618056,Gizi Lebih
+Perempuan,33,19.78014635,Gizi Lebih
+Perempuan,34,19.82202746,Gizi Lebih
+Perempuan,35,20.22112868,Gizi Lebih
+Perempuan,36,20.22112868,Gizi Lebih
+Perempuan,37,19.90910828,Gizi Lebih
+Perempuan,38,20.30729045,Gizi Lebih
+Perempuan,39,19.90910828,Gizi Lebih
+Perempuan,40,19.7763809,Gizi Lebih
+Perempuan,24,13.9792305102176,Normal
+Perempuan,25,14.0101067691963,Normal
+Perempuan,26,14.1910380562402,Normal
+Perempuan,27,14.3702451394759,Normal
+Perempuan,28,14.4275161588181,Normal
+Perempuan,29,14.6913912030816,Normal
+Perempuan,30,14.6408425629205,Normal
+Perempuan,31,15.011712626945,Normal
+Perempuan,32,15.0306393802752,Normal
+Perempuan,33,15.3763971165269,Normal
+Perempuan,34,15.7436218651919,Normal
+Perempuan,35,16.0129895579631,Normal
+Perempuan,36,15.9990466774945,Normal
+Perempuan,37,16.1179792220608,Normal
+Perempuan,38,16.1179792220608,Normal
+Perempuan,39,16.0412538271758,Normal
+Perempuan,40,15.9894806048652,Normal
+Perempuan,41,16.3050624589086,Normal
+Perempuan,42,16.5556018325698,Normal
+Perempuan,43,16.8002267515267,Normal
+Perempuan,44,16.8690785700338,Normal
+Perempuan,45,17.2431384552597,Normal
+Perempuan,46,16.8,Normal
+Perempuan,47,16.6650328399177,Normal
+Perempuan,48,16.243752402922,Normal
+Perempuan,49,16.4352827298622,Normal
+Perempuan,50,16.1808447352766,Normal
+Perempuan,51,16.7782071825808,Normal
+Perempuan,52,16.4954284098407,Normal
+Perempuan,53,15.625,Normal
+Perempuan,54,15.8421281564067,Normal
+Laki-Laki,24,15.6734693877551,Normal
+Laki-Laki,25,15.754132231405,Normal
+Laki-Laki,26,15.0817430473165,Normal
+Laki-Laki,27,15.4320987654321,Normal
+Laki-Laki,28,15.359168241966,Normal
+Laki-Laki,29,15.3258331063931,Normal
+Laki-Laki,30,15.6116296076316,Normal
+Laki-Laki,31,15.1935719503287,Normal
+Laki-Laki,32,14.8953427616198,Normal
+Laki-Laki,33,15.9426715495462,Normal
+Laki-Laki,34,15.6423622979673,Normal
+Laki-Laki,35,15.9556018036767,Normal
+Laki-Laki,36,15.8871963012765,Normal
+Laki-Laki,37,16.0829143159764,Normal
+Laki-Laki,38,16.0141839915354,Normal
+Laki-Laki,39,16.2875910197285,Normal
+Laki-Laki,40,15.8780385178532,Normal
+Laki-Laki,41,16.3752807795989,Normal
+Laki-Laki,42,16.305894074663,Normal
+Laki-Laki,43,16.4957986210859,Normal
+Laki-Laki,44,16.5794299346615,Normal
+Laki-Laki,45,16.0664819944598,Normal
+Laki-Laki,46,15.865443532151,Normal
+Laki-Laki,47,16.2351105512964,Normal
+Laki-Laki,48,16.242186154944,Normal
+Laki-Laki,49,16.6447421407286,Normal
+Laki-Laki,50,16.0081278601188,Normal
+Laki-Laki,51,16.3673078966947,Normal
+Laki-Laki,52,16.4058663144168,Normal
+Laki-Laki,53,16.76020053211,Normal
+Laki-Laki,54,16.2383751567527,Normal
+Laki-Laki,55,16.7924327771283,Normal
+Laki-Laki,56,16.620644312952,Normal
+Laki-Laki,57,16.5919338313679,Normal
+Laki-Laki,58,16.2919351866088,Normal
+Laki-Laki,59,16.1748848152142,Normal
+Laki-Laki,60,15.3643133188802,Normal
+Laki-Laki,24,13.8504155124654,Normal
+Laki-Laki,24,15.67346939,Normal
+Laki-Laki,25,15.75413223,Normal
+Laki-Laki,26,15.08174305,Normal
+Laki-Laki,27,15.43209877,Normal
+Laki-Laki,28,15.35916824,Normal
+Laki-Laki,29,15.32583311,Normal
+Laki-Laki,30,15.61162961,Normal
+Laki-Laki,31,15.19357195,Normal
+Laki-Laki,32,14.89534276,Normal
+Laki-Laki,33,15.94267155,Normal
+Laki-Laki,34,15.6423623,Normal
+Laki-Laki,35,15.9556018,Normal
+Laki-Laki,36,15.8871963,Normal
+Laki-Laki,37,16.08291432,Normal
+Laki-Laki,38,16.01418399,Normal
+Laki-Laki,39,16.28759102,Normal
+Laki-Laki,40,15.87803852,Normal
+Laki-Laki,41,16.37528078,Normal
+Laki-Laki,42,16.30589407,Normal
+Laki-Laki,43,16.49579862,Normal
+Laki-Laki,44,16.57942993,Normal
+Laki-Laki,45,16.06648199,Normal
+Laki-Laki,46,15.86544353,Normal
+Laki-Laki,47,16.23511055,Normal
+Laki-Laki,48,16.24218615,Normal
+Laki-Laki,49,16.64474214,Normal
+Laki-Laki,50,16.00812786,Normal
+Laki-Laki,51,16.3673079,Normal
+Laki-Laki,52,16.40586631,Normal
+Laki-Laki,53,16.76020053,Normal
+Laki-Laki,54,16.23837516,Normal
+Laki-Laki,55,16.79243278,Normal
+Laki-Laki,56,16.62064431,Normal
+Laki-Laki,57,16.59193383,Normal
+Laki-Laki,58,16.29193519,Normal
+Laki-Laki,59,16.17488482,Normal
+Laki-Laki,60,15.36431332,Normal
+Laki-Laki,24,13.85041551,Normal
+Perempuan,24,13.97923051,Normal
+Perempuan,25,14.01010677,Normal
+Perempuan,26,14.19103806,Normal
+Perempuan,27,14.37024514,Normal
+Perempuan,28,14.42751616,Normal
+Perempuan,29,14.6913912,Normal
+Perempuan,30,14.64084256,Normal
+Perempuan,31,15.01171263,Normal
+Perempuan,32,15.03063938,Normal
+Perempuan,33,15.37639712,Normal
+Perempuan,34,15.74362187,Normal
+Perempuan,35,16.01298956,Normal
+Perempuan,36,15.99904668,Normal
+Perempuan,37,16.11797922,Normal
+Perempuan,38,16.11797922,Normal
+Perempuan,39,16.04125383,Normal
+Perempuan,40,15.9894806,Normal
+Perempuan,41,16.30506246,Normal
+Perempuan,42,16.55560183,Normal
+Perempuan,43,16.80022675,Normal
+Perempuan,44,16.86907857,Normal
+Perempuan,45,17.24313846,Normal
+Perempuan,46,16.8,Normal
+Perempuan,47,16.66503284,Normal
+Perempuan,48,16.2437524,Normal
+Perempuan,49,16.43528273,Normal
+Perempuan,50,16.18084474,Normal
+Perempuan,51,16.77820718,Normal
+Perempuan,52,16.49542841,Normal
+Perempuan,53,15.625,Normal
+Perempuan,54,15.84212816,Normal
+Perempuan,24,20.6559283198249,Obese
+Perempuan,25,21.1042563881223,Obese
+Perempuan,26,21.6488823594286,Obese
+Perempuan,27,20.9572742022715,Obese
+Perempuan,28,20.8220659816117,Obese
+Perempuan,29,21.0924824229313,Obese
+Perempuan,30,20.7156938086805,Obese
+Perempuan,31,20.5820441712052,Obese
+Perempuan,32,20.1810952587791,Obese
+Laki-Laki,55,20.2919188323247,Obese
+Laki-Laki,56,20.5258101144205,Obese
+Laki-Laki,57,20.9190672153635,Obese
+Laki-Laki,58,20.9578318323373,Obese
+Laki-Laki,59,21.0743801652893,Obese
+Laki-Laki,60,20.6611570247934,Obese
+Laki-Laki,55,20.29191883,Obese
+Laki-Laki,56,20.52581011,Obese
+Laki-Laki,57,20.91906722,Obese
+Laki-Laki,58,20.95783183,Obese
+Laki-Laki,59,21.07438017,Obese
+Laki-Laki,60,20.66115702,Obese
+Perempuan,24,20.65592832,Obese
+Perempuan,25,21.10425639,Obese
+Perempuan,26,21.64888236,Obese
+Perempuan,27,20.9572742,Obese
+Perempuan,28,20.82206598,Obese
+Perempuan,29,21.09248242,Obese
+Perempuan,30,20.71569381,Obese
+Perempuan,31,20.58204417,Obese
+Perempuan,32,20.18109526,Obese
