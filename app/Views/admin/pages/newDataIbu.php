@@ -42,7 +42,7 @@
                                         <td><?= $value['created_at'] ?></td>
                                         <td>
                                             <a href="<?= base_url('admin/edit-ibu?id=') . $value['id_user']; ?>" class="btn btn-warning">Edit</a>
-                                            <a href="<?= base_url('admin/hapus-data-ibu/') . $value['id_user']; ?>" class="btn btn-danger">Delete</a>
+                                            <a href="<?= base_url('admin/hapus-data-ibu/') . $value['id_user']; ?>" class="btn btn-danger" onclick="return confirmDelete()">Delete</a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -54,5 +54,11 @@
         </section>
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Apakah Anda yakin ingin menghapus data ini?');
+    }
+</script>
 
 <?= $this->endSection() ?>

@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <?php $role = session()->get('level'); ?>
-<?php if ($role != 'admin') : ?>
+<?php if ($role != 'admin'): ?>
     <?php return redirect()->to('/forbidden'); ?>
 <?php endif; ?>
 
@@ -42,12 +42,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($bayi as $key => $value) : ?>
+                                <?php foreach ($bayi as $key => $value): ?>
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $value['kode_bayi'] ?></td>
                                         <td><?= $value['nama_bayi'] ?></td>
-                                        <td><?= empty($value['jenis_kelamin']) ? '' : ($value['jenis_kelamin'] === 'L' ? 'Laki-laki' : 'Perempuan') ?></td>
+                                        <td><?= empty($value['jenis_kelamin']) ? '' : ($value['jenis_kelamin'] === 'L' ? 'Laki-laki' : 'Perempuan') ?>
+                                        </td>
                                         <td><?= $value['umur'] ?></td>
                                         <td><?= $value['tgl_lahir'] ?></td>
                                         <td><?= $value['lingkar_kepala'] ?></td>
@@ -56,8 +57,10 @@
                                         <td><?= $value['imt'] ?></td>
                                         <td><?= $value['status_gizi'] ?></td>
                                         <td>
-                                            <a href="<?= base_url('admin/edit-data-bayi/') . $value['id_bayi']; ?>" class="btn btn-warning">Edit</a>
-                                            <a href="<?= base_url('admin/hapus-data-bayi/') . $value['id_bayi']; ?>" class="btn btn-danger">Delete</a>
+                                            <a href="<?= base_url('admin/edit-data-bayi/') . $value['id_bayi']; ?>"
+                                                class="btn btn-warning">Edit</a>
+                                            <a href="<?= base_url('admin/hapus-data-bayi/') . $value['id_bayi']; ?>"
+                                                class="btn btn-danger" onclick="return confirmDelete()">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -69,5 +72,11 @@
         </section>
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Apakah Anda yakin ingin menghapus data ini?');
+    }
+</script>
 
 <?= $this->endSection() ?>
