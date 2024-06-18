@@ -58,7 +58,7 @@
                                     <th>Akurasi</th>
                                     <th>Precision</th>
                                     <th>Recall</th>
-                                    <th>Status Gizi</th>
+                                    <th>Klasifikasi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

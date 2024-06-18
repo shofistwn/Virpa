@@ -37,7 +37,7 @@
                                     <th>Berat Badan (kg)</th>
                                     <th>Tinggi Badan (cm)</th>
                                     <th>IMT</th>
-                                    <th>Status Gizi</th>
+                                    <th>Klasifikasi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
