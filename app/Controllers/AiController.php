@@ -7,29 +7,21 @@ use Exception;
 use Phpml\Dataset\CsvDataset;
 use Phpml\Classification\NaiveBayes;
 use Phpml\Dataset\Dataset;
+use Phpml\Preprocessing\LabelEncoder;
 use Phpml\Dataset\FilesDataset;
 use Phpml\Dataset\Demo\IrisDataset;
+use Phpml\Metric\Accuracy;
+use Phpml\Metric\ClassificationReport;
 
 helper('url');
 
 class AiController extends BaseController
 {
-
-
-    /**
-     * @return float $imt
-     * 
-     */
     private function calculateImt($bb, $tb)
     {
         return $bb / (($tb / 100) * ($tb / 100));
     }
 
-
-
-    /** ======================================================================================================== */
-    /* NEW CODE
-    /** ======================================================================================================== */
     public function prediksi($data = null)
     {
         try {
@@ -40,24 +32,27 @@ class AiController extends BaseController
             } else {
                 $data = $this->request->getPost();
             }
-
-            // Map jenis_kelamin value
             $data['jenis_kelamin'] = ($data['jenis_kelamin'] == "L") ? "Laki-laki" : "Perempuan";
-
-            // Extract necessary data
+                
             $umur = $data['umur'];
             $bb = $data['berat_badan'];
             $tb_cm = $data['tinggi_badan_cm'];
             $tb_m = $tb_cm / 100;
             $lk = $data['lingkar_kepala'] ?? null;
 
-            // Calculate IMT
             $data['imt'] = $data['imt'] ?? $this->calculateImt($bb, $tb_cm);
 
-            // Perform Naive Bayes classification
-            $hasilPrediksi = $this->naiveBayes($data);
+            $type = 'direct';
 
-            // Simpan hasil prediksi ke dalam database
+            if($data['method'] == "direct") {
+               $hasilPrediksi = $this->directMethod($data);
+            } else if($data["method"] == "5month") {
+                $type = '5month';
+                $hasilPrediksi = $this->fiveMonth($data);
+            } else {
+                $hasilPrediksi = $this->naiveBayes($data);
+            }
+
             $dataKlasifikasiModel = new \App\Models\DataKlasifikasi();
             $dataKlasifikasiModel->insert([
                 'jenis_kelamin' => $data['jenis_kelamin'],
@@ -67,10 +62,11 @@ class AiController extends BaseController
                 'tinggi_badan_m' => $tb_m,
                 'lingkar_kepala' => $lk,
                 'imt' => $data['imt'],
-                'status_gizi' => $hasilPrediksi['status_gizi'][0]['status_gizi'], // Adjusted this line
+                'status_gizi' => $hasilPrediksi['status_gizi'][0]['status_gizi'],
                 'accuracy' => $hasilPrediksi['accuracy'],
                 'precision' => $hasilPrediksi['precision'],
                 'recall' => $hasilPrediksi['recall'],
+                'type' => $type,
             ]);
 
             $data['status_gizi'] = $hasilPrediksi['status_gizi'][0]['status_gizi'];
@@ -78,9 +74,6 @@ class AiController extends BaseController
             $data['precision'] = $hasilPrediksi['precision'];
             $data['recall'] = $hasilPrediksi['recall'];
 
-            // Return the result as JSON
-
-            // Return the result as JSON
             if ($web) {
                 return [
                     'data' => $data,
@@ -92,6 +85,7 @@ class AiController extends BaseController
                     'predicted' => $hasilPrediksi['status_gizi'][0]['status_gizi'],
                 ])->setStatusCode(200);
             }
+            
         } catch (\Exception $e) {
             log_message('error', 'Full error: ' . $e->getMessage() . ', File: ' . $e->getFile() . ', Line: ' . $e->getLine());
 
@@ -100,41 +94,28 @@ class AiController extends BaseController
                     'message' => $e->getMessage(),
                     'file' => $e->getFile(),
                     'line' => $e->getLine(),
-                    // Add more information as needed
                 ],
             ])->setStatusCode(500);
         }
     }
 
-
-
     public function naiveBayes($postData = null)
     {
-        // Membaca data dari file CSV
         $data = [];
         $csvFile = FCPATH . 'data/dataposyandu.csv';
 
         $classifier = new NaiveBayesClassifier($csvFile);
         $testResults = [];
 
-        // Lakukan satu kali prediksi tanpa perulangan
         $umur = $postData['umur'];
         $imt = $postData['imt'];
         $jenisKelamin = $postData['jenis_kelamin'];
-
-        // random data
-        // $umur = rand(0, 60);
-        // // random between 10.000000000001 and 21.000000000001
-        // $imt = rand(10000000000001, 21000000000001) / 1000000000000000;
-        // $jenisKelamin = rand(0, 1) == 0 ? 'Laki-Laki' : 'Perempuan';
-
 
         $data = [
             'umur' => $umur,
             'imt' => $imt,
             'jenis_kelamin' => $jenisKelamin,
         ];
-        // var_dump($data);
         $hasilKlasifikasi = $classifier->doPredict($data);
 
         $testResults[] = [
@@ -144,13 +125,11 @@ class AiController extends BaseController
             'jenisKelamin' => $jenisKelamin,
         ];
 
-        // Menghitung metrics untuk satu kali prediksi
         $metrics = $hasilKlasifikasi['matrix'];
         $averageAccuracy = $metrics['accuracy'];
         $averagePrecision = $metrics['precision'];
         $averageRecall = $metrics['recall'];
 
-        // Menyiapkan data untuk di-return dalam format JSON
         $result = [
             'status_gizi' => $testResults,
             'accuracy' => $averageAccuracy,
@@ -158,9 +137,74 @@ class AiController extends BaseController
             'recall' => $averageRecall,
         ];
 
-        // echo json_encode($result, JSON_PRETTY_PRINT);
         return $result;
-
-        // return $this->response->setJSON($result)->setStatusCode(200);
     }
+
+
+    public function fiveMonth($postData) {
+        try {
+            $csvFile = FCPATH . 'data/data2.csv';
+    
+            $dataset = new CsvDataset($csvFile, 2, true);
+    
+            $samples = $dataset->getSamples();
+            $labels = $dataset->getTargets();
+            $filteredSamples = [];
+            $filteredLabels = [];
+            foreach ($samples as $key => $sample) {
+                $filteredSamples[] = $sample;
+                $filteredLabels[] = $labels[$key];
+            }
+    
+            $predictedResults = $this->predictionMethod($filteredSamples, $filteredLabels);
+    
+            $result = [
+                'status_gizi' => array_map(function($status) { return ['status_gizi' => $status]; }, $predictedResults),
+                'accuracy' => null,
+                'precision' => null,
+                'recall' => null
+            ];
+    
+            return $result;
+    
+        } catch (Exception $e) {
+            return [
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ];
+        }
+    }
+    
+    private function predictionMethod($samples, $labels) {
+        $classifier = new NaiveBayes();
+        $classifier->train($samples, $labels);
+        $predictions = $classifier->predict($samples);
+    
+        return $predictions;
+    }
+    
+    public function directMethod($postData) {
+        $imt = $postData['imt'];
+        $statusGizi = '';
+    
+        if ($imt < 18.5) {
+            $statusGizi = 'Gizi Buruk';
+        } else if ($imt >= 18.5 && $imt <= 24.9) {
+            $statusGizi = 'Normal';
+        } else if ($imt >= 25 && $imt <= 26.9) {
+            $statusGizi = 'Gizi Lebih';
+        } else if($imt >= 27 && $imt <= 29.9) {
+            $statusGizi = 'Beresiko Gizi Lebih';
+        } else if ($imt >= 30) {
+            $statusGizi = 'Obese';
+        }
+    
+        $result = [
+            'status_gizi' => [[ 'status_gizi' => $statusGizi ]],
+            'accuracy' => null,
+            'precision' => null,
+            'recall' => null
+        ];
+    
+        return $result;
+    }    
 }

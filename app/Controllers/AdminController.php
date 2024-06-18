@@ -3,9 +3,35 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use DateTime;
 
 class AdminController extends BaseController
 {
+    const STATUS_GIZI_BURUK = 'Gizi Buruk';
+    const STATUS_GIZI_KURANG = 'Gizi Kurang';
+    const STATUS_GIZI_NORMAL = 'Normal';
+    const STATUS_GIZI_BERESIKO_GIZI_LEBIH = 'Beresiko Gizi Lebih';
+    const STATUS_GIZI_LEBIH = 'Gizi Lebih';
+    const STATUS_GIZI_OBESITAS = 'Obese';
+
+    public function __construct()
+    {
+        helper('form');
+    }
+
+    private function calculateImt($bb, $tb)
+    {
+        return $bb / (($tb / 100) * ($tb / 100));
+    }
+
+    function formatNumber($number)
+    {
+        if (strpos($number, '.') !== false) {
+            $number = rtrim(rtrim($number, '0'), '.');
+        }
+        return $number;
+    }
+
     public function index()
     {
         $data = [
@@ -47,7 +73,6 @@ class AdminController extends BaseController
 
         // get all data klasisfikasi from database
         $model = new \App\Models\DataKlasifikasi();
-        $data['klasifikasi'] = $model->findAll();
 
         $data['gizi_buruk'] = $model->where('status_gizi', 'Gizi Buruk')->countAllResults();
         $data['gizi_kurang'] = $model->where('status_gizi', 'Gizi Kurang')->countAllResults();
@@ -56,7 +81,145 @@ class AdminController extends BaseController
         $data['gizi_lebih'] = $model->where('status_gizi', 'Gizi Lebih')->countAllResults();
         $data['gizi_obesitas'] = $model->where('status_gizi', 'Obese')->countAllResults();
 
+        $data['statusGiziBuruk'] = self::STATUS_GIZI_BURUK;
+        $data['statusGiziKurang'] = self::STATUS_GIZI_KURANG;
+        $data['statusGiziNormal'] = self::STATUS_GIZI_NORMAL;
+        $data['statusGiziBeresikoGiziLebih'] = self::STATUS_GIZI_BERESIKO_GIZI_LEBIH;
+        $data['statusGiziLebih'] = self::STATUS_GIZI_LEBIH;
+        $data['statusGiziObesitas'] = self::STATUS_GIZI_OBESITAS;
+
         return view('admin/pages/newDataKlasifikasi', $data);
+    }
+
+    public function prosesEditKlasifikasi()
+    {
+        $id = $this->request->getGet('id');
+
+        $data = [
+            'title' => 'Edit Klasifikasi',
+            'breadcrumbs' => 'Edit Klasifikasi',
+        ];
+
+        // // get role and name from session
+        $data['role'] = session()->get('level');
+        $data['name'] = session()->get('nama_user');
+
+        // // get all data klasisfikasi from database
+        $model = new \App\Models\DataKlasifikasi();
+        $data['klasifikasi'] = $model->find($id);
+
+        $data['klasifikasi']['berat_badan'] = $this->formatNumber($data['klasifikasi']['berat_badan']);
+        $data['klasifikasi']['tinggi_badan_cm'] = $this->formatNumber($data['klasifikasi']['tinggi_badan_cm']);
+        $data['klasifikasi']['lingkar_kepala'] = $this->formatNumber($data['klasifikasi']['lingkar_kepala']);
+
+        $data['statusGizi'] = [
+            self::STATUS_GIZI_BURUK,
+            self::STATUS_GIZI_KURANG,
+            self::STATUS_GIZI_NORMAL,
+            self::STATUS_GIZI_BERESIKO_GIZI_LEBIH,
+            self::STATUS_GIZI_LEBIH,
+            self::STATUS_GIZI_OBESITAS,
+        ];
+
+        return view('admin/pages/formEditKlasifikasi', $data);
+    }
+
+    public function prosesUpdateKlasifikasi()
+    {
+        $id = $this->request->getPost('id_klasifikasi');
+        $jenis_kelamin = $this->request->getPost('jenis_kelamin');
+        $umur = $this->request->getPost('umur');
+        $berat_badan = $this->request->getPost('berat_badan');
+        $tinggi_badan = $this->request->getPost('tinggi_badan');
+        $lingkar_kepala = $this->request->getPost('lingkar_kepala');
+        $status_gizi = $this->request->getPost('status_gizi');
+
+        $data = array(
+            'jenis_kelamin' => $jenis_kelamin,
+            'umur' => $umur,
+            'berat_badan' => $berat_badan,
+            'tinggi_badan_cm' => $tinggi_badan,
+            'tinggi_badan_m' => ($tinggi_badan ?? 0) / 100,
+            'lingkar_kepala' => $lingkar_kepala,
+            'imt' => $this->calculateImt($berat_badan, $tinggi_badan),
+            'status_gizi' => $status_gizi,
+        );
+
+        try {
+            $model = new \App\Models\DataKlasifikasi();
+            $model->update($id, $data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(500);
+        }
+
+        session()->setFlashdata('success_form', 'Data klasifikasi berhasil diubah');
+        return redirect()->to(base_url('admin/proses-klasifikasi'));
+    }
+
+    public function prosesDeleteKlasifikasi()
+    {
+        $id = $this->request->getGet('id');
+
+        try {
+            $model = new \App\Models\DataKlasifikasi();
+            $model->delete($id);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(500);
+        }
+
+        session()->setFlashdata('success_form', 'Data klasifikasi berhasil dihapus!');
+        return redirect()->to(base_url('admin/proses-klasifikasi'));
+    }
+
+    public function ajaxKlasifikasi()
+    {
+        $model = new \App\Models\DataKlasifikasi();
+        $data = $model->orderBy('id_klasifikasi', 'DESC')->findAll();
+
+        return $this->response->setJSON([
+            'data' => $data,
+        ])->setStatusCode(200);
+    }
+
+    public function getDataKlasifikasi()
+    {
+        $berat_badan = $this->request->getGet('berat_badan');
+        $tinggi_badan_cm = $this->request->getGet('tinggi_badan_cm');
+
+        if (is_numeric($berat_badan) && is_numeric($tinggi_badan_cm) && $berat_badan >= 0.5 && $tinggi_badan_cm > 0) {
+            $data = array(
+                'berat_badan' => $berat_badan,
+                'tinggi_badan_cm' => $tinggi_badan_cm,
+                'tinggi_badan_m' => $tinggi_badan_cm / 100,
+                'imt' => $this->calculateImt($berat_badan, $tinggi_badan_cm),
+            );
+
+            try {
+                $model = new \App\Models\DataKlasifikasi();
+                $model->insert($data);
+            } catch (\Exception $e) {
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ])->setStatusCode(500);
+            }
+        } else {
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => 'Data yang diterima tidak valid',
+            ])->setStatusCode(400);
+        }
+
+        return $this->response->setJSON([
+            'status' => $model->resultID,
+            'message' => 'Data berhasil disimpan',
+        ])->setStatusCode(200);
     }
 
     public function pertumbuhanBalita()
@@ -253,7 +416,7 @@ class AdminController extends BaseController
 
         // get all data ibu from database using dependency injection
         $model = new \App\Models\UserModel();
-        $data['ibu'] = $model->where('level', 'ibu')->findAll();
+        $data['dataIbu'] = $model->where('level', 'ibu')->findAll();
 
         // If $id is provided, it's an edit operation
         if (!empty($id)) {
@@ -333,64 +496,66 @@ class AdminController extends BaseController
 
     public function prosesTambahBayi()
     {
-        helper('date');
-
-        // get data from form
-        $id_ibu = $this->request->getPost('ibu');
+        $id_user = $this->request->getPost('ibu');
         $nama_bayi = $this->request->getPost('nama_bayi');
         $tgl_lahir = $this->request->getPost('tgl_lahir');
-        // $umur = $this->request->getPost('umur');
         $berat_badan = $this->request->getPost('berat_badan');
         $tinggi_badan = $this->request->getPost('tinggi_badan');
         $lingkar_kepala = $this->request->getPost('lingkar_kepala');
         $jenis_kelamin = $this->request->getPost('jenis_kelamin');
 
+        try {
+            if (!isset($id_user)) {
+                throw new \Exception('Data ibu tidak boleh kosong');
+            }
+            if (!isset($jenis_kelamin)) {
+                throw new \Exception('Jenis kelamin tidak boleh kosong');
+            }
+            if (!isset($tgl_lahir)) {
+                throw new \Exception('Tanggal lahir tidak boleh kosong');
+            }
 
-        $tanggalObjek = date_create($tgl_lahir);
-        $tanggalSaatIni = date_create();
+            $tgl_lahir_dt = new DateTime($tgl_lahir ?? '');
+            $sekarang_dt = new DateTime();
+            $diff = $tgl_lahir_dt->diff($sekarang_dt);
+            $umur = $diff->y * 12 + $diff->m;
 
-        $umur = date_diff($tanggalObjek, $tanggalSaatIni)->format('%y') * 12 + date_diff($tanggalObjek, $tanggalSaatIni)->format('%m');
+            if (!isset($berat_badan) || !is_numeric($berat_badan) || $berat_badan <= 0)
+                throw new \Exception('Berat badan tidak boleh kosong dan harus lebih dari 0');
+            if (!isset($tinggi_badan) || !is_numeric($tinggi_badan) || $tinggi_badan <= 0)
+                throw new \Exception('Tinggi badan tidak boleh kosong dan harus lebih dari 0');
 
+            $imt = $this->calculateImt($berat_badan, $tinggi_badan);
 
+            $AiController = new AiController();
+            $result = $AiController->directMethod([
+                'imt' => $imt,
+            ]);
 
-        $data_for_predict = [
-            'jenis_kelamin' => $jenis_kelamin,
-            'umur' => $umur,
-            'berat_badan' => $berat_badan,
-            'tinggi_badan_cm' => $tinggi_badan,
-            'lingkar_kepala' => $lingkar_kepala
-        ];
+            $data = array(
+                'id_user' => $id_user,
+                'kode_bayi' => $this->generateKodeBayi(),
+                'nama_bayi' => $nama_bayi,
+                'tgl_lahir' => $tgl_lahir,
+                'umur' => $umur,
+                'berat_badan' => $berat_badan,
+                'tinggi_badan' => $tinggi_badan,
+                'lingkar_kepala' => $lingkar_kepala,
+                'jenis_kelamin' => $jenis_kelamin,
+                'imt' => $this->calculateImt($berat_badan, $tinggi_badan),
+                'status_gizi' => $result['status_gizi'][0]['status_gizi'],
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
 
-        // call AiController
-        $ai = new \App\Controllers\AiController();
-        // use method prediksi from AiController
-        $data['prediksi'] = $ai->prediksi($data_for_predict);
+            $model = new \App\Models\BayiModel();
+            $model->insert($data);
+        } catch (\Exception $e) {
+            session()->setFlashdata('error', $e->getMessage());
+            return redirect()->to(base_url('admin/tambah-data-bayi'));
+        }
 
-
-        // generate kode bayi
-        $kode_bayi = $this->generateKodeBayi();
-        $data_for_insert = [
-            'id_user' => $id_ibu,
-            'nama_bayi' => $nama_bayi,
-            'tgl_lahir' => $tgl_lahir,
-            'kode_bayi' =>  $kode_bayi,
-            'umur' => $umur,
-            'berat_badan' => $berat_badan,
-            'tinggi_badan' => $tinggi_badan,
-            'lingkar_kepala' => $lingkar_kepala,
-            'jenis_kelamin' => $jenis_kelamin,
-            'imt' => $data['prediksi']['data']['imt'],
-            'status_gizi' => $data['prediksi']['data']['status_gizi'],
-            'created_at' => date('Y-m-d H:i:s'),
-        ];
-
-        // insert data bayi to database
-        $model = new \App\Models\BayiModel();
-        $model->insert($data_for_insert);
-
-        // use flashdata to show alert success
         session()->setFlashdata('success_form', 'Data bayi berhasil ditambahkan');
-
         return redirect()->to(base_url('admin/data-balita'));
     }
 
@@ -408,51 +573,65 @@ class AdminController extends BaseController
 
     public function prosesEditBayi()
     {
-
-        // get data from form
-        $id_user = $this->request->getPost('ibu');
         $id_bayi = $this->request->getPost('id_bayi');
+        $id_user = $this->request->getPost('ibu');
         $nama_bayi = $this->request->getPost('nama_bayi');
         $tgl_lahir = $this->request->getPost('tgl_lahir');
-        $umur = $this->request->getPost('umur');
         $berat_badan = $this->request->getPost('berat_badan');
         $tinggi_badan = $this->request->getPost('tinggi_badan');
         $lingkar_kepala = $this->request->getPost('lingkar_kepala');
         $jenis_kelamin = $this->request->getPost('jenis_kelamin');
 
-        $data_for_predict = [
-            'jenis_kelamin' => $jenis_kelamin,
-            'umur' => $umur,
-            'berat_badan' => $berat_badan,
-            'tinggi_badan_cm' => $tinggi_badan,
-            'lingkar_kepala' => $lingkar_kepala
-        ];
+        try {
+            if (!isset($id_user)) {
+                throw new \Exception('Data ibu tidak boleh kosong');
+            }
+            if (!isset($jenis_kelamin)) {
+                throw new \Exception('Jenis kelamin tidak boleh kosong');
+            }
+            if (!isset($tgl_lahir)) {
+                throw new \Exception('Tanggal lahir tidak boleh kosong');
+            }
 
-        // call AiController
-        $ai = new \App\Controllers\AiController();
-        // use method prediksi from AiController
-        $data['prediksi'] = $ai->prediksi($data_for_predict);
+            $tgl_lahir_dt = new DateTime($tgl_lahir ?? '');
+            $sekarang_dt = new DateTime();
+            $diff = $tgl_lahir_dt->diff($sekarang_dt);
+            $umur = $diff->y * 12 + $diff->m;
 
-        $data_for_update = [
-            'id_user' => $id_user,
-            'nama_bayi' => $nama_bayi,
-            'umur' => $umur,
-            'berat_badan' => $berat_badan,
+            if (!isset($berat_badan) || !is_numeric($berat_badan) || $berat_badan <= 0)
+                throw new \Exception('Berat badan tidak boleh kosong dan harus lebih dari 0');
+            if (!isset($tinggi_badan) || !is_numeric($tinggi_badan) || $tinggi_badan <= 0)
+                throw new \Exception('Tinggi badan tidak boleh kosong dan harus lebih dari 0');
 
-            'tinggi_badan' => $tinggi_badan,
-            'lingkar_kepala' => $lingkar_kepala,
-            'jenis_kelamin' => $jenis_kelamin,
-            'imt' => $data['prediksi']['data']['imt'],
-            'status_gizi' => $data['prediksi']['data']['status_gizi'],
-            'updated_at' => date('Y-m-d H:i:s'),
-            'tgl_lahir' => $tgl_lahir,
-        ];
+            $imt = $this->calculateImt($berat_badan, $tinggi_badan);
 
-        // update data bayi to database
-        $model = new \App\Models\BayiModel();
-        $model->update($id_bayi, $data_for_update);
+            $AiController = new AiController();
+            $result = $AiController->directMethod([
+                'imt' => $imt,
+            ]);
 
-        // use flashdata to show alert success
+            $data = array(
+                'id_user' => $id_user,
+                'nama_bayi' => $nama_bayi,
+                'tgl_lahir' => $tgl_lahir,
+                'umur' => $umur,
+                'berat_badan' => $berat_badan,
+                'tinggi_badan' => $tinggi_badan,
+                'lingkar_kepala' => $lingkar_kepala,
+                'jenis_kelamin' => $jenis_kelamin,
+                'imt' => $this->calculateImt($berat_badan, $tinggi_badan),
+                'status_gizi' => $result['status_gizi'][0]['status_gizi'],
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+
+            $model = new \App\Models\BayiModel();
+            $model->update($id_bayi, $data);
+        } catch (\Exception $e) {
+            session()->setFlashdata('error', $e->getMessage());
+            return redirect()->to(base_url('admin/tambah-data-bayi'));
+        }
+
         session()->setFlashdata('success_form', 'Data bayi berhasil diubah');
         return redirect()->to(base_url('admin/data-balita'));
     }
@@ -547,7 +726,7 @@ class AdminController extends BaseController
         // generate kode bayi
         $kode_bayi = $this->generateKodeBayi();
         $data_for_insert = [
-            'kode_bayi' =>  $kode_bayi,
+            'kode_bayi' => $kode_bayi,
             'berat_badan' => $berat_badan,
             'tinggi_badan' => $tinggi_badan,
             'lingkar_kepala' => $lingkar_kepala,
@@ -1245,5 +1424,58 @@ class AdminController extends BaseController
             ];
         }
         return view('admin/pages/newKmsOnline', $data);
+    }
+
+    public function editIbu()
+    {
+        $id = $this->request->getGet('id');
+        $data = [
+            'title' => 'Edit Ibu',
+            'breadcrumbs' => 'Edit Ibu',
+        ];
+
+        // get role and name from session
+        $data['role'] = session()->get('level');
+        $data['name'] = session()->get('nama_user');
+
+        // get all data ibu from database
+        $model = new \App\Models\UserModel();
+        $data['ibu'] = $model->where('level', 'ibu')->find($id);
+
+        return view('admin/pages/formEditIbu', $data);
+    }
+
+    public function updateIbu()
+    {
+        $id = $this->request->getPost('id_user');
+        $nama_user = $this->request->getPost('nama_user');
+        $telepon = $this->request->getPost('telepon');
+        $email = $this->request->getPost('email');
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $data = array(
+            'nama_user' => $nama_user,
+            'telepon' => $telepon,
+            'email' => $email,
+            'username' => $username,
+        );
+
+        if (!empty($password) && is_string($password)) {
+            $data['password'] = password_hash($password, PASSWORD_BCRYPT);
+        }
+
+        try {
+            $model = new \App\Models\UserModel();
+            $model->update($id, $data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(500);
+        }
+
+        session()->setFlashdata('success_form', 'Data ibu berhasil diubah');
+        return redirect()->to(base_url('admin/data-ibu'));
     }
 }

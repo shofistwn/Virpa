@@ -52,6 +52,9 @@
 
 
     <!-- script -->
+    <script>
+        const base_url = '<?= base_url() ?>';
+    </script>
     <?= $this->include('admin/partials/newScript'); ?>
     <script>
         console.log('<?= $role ?>');

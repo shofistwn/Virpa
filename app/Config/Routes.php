@@ -11,6 +11,11 @@ $routes->get('/getpredict', 'AiController::prediksi');
 $routes->post('/predict-home', 'AiController::prediksi');
 $routes->get('/admin', 'AdminController::index');
 $routes->get('/admin/proses-klasifikasi', 'AdminController::prosesKlasifikasi');
+$routes->get('/admin/proses-klasifikasi/edit', 'AdminController::prosesEditKlasifikasi');
+$routes->post('/admin/proses-klasifikasi/update', 'AdminController::prosesUpdateKlasifikasi');
+$routes->get('/admin/proses-klasifikasi/delete', 'AdminController::prosesDeleteKlasifikasi');
+$routes->get('/admin/ajax-klasifikasi', 'AdminController::ajaxKlasifikasi');
+$routes->get('/admin/get-klasifikasi', 'AdminController::getDataKlasifikasi');
 $routes->get('/admin/pertumbuhan-balita', 'AdminController::pertumbuhanBalita');
 $routes->get('/admin/data-balita', 'AdminController::dataBalita');
 $routes->get('/admin/sdidtk', 'AdminController::sdidtk');
@@ -35,6 +40,8 @@ $routes->post('/data-bayi', 'AdminController::getOneDataBayiByKodeBayi');
 
 // data ibu
 $routes->get('/admin/data-ibu', 'AdminController::dataIbu');
+$routes->get('/admin/edit-ibu', 'AdminController::editIbu');
+$routes->post('/admin/update-ibu', 'AdminController::updateIbu');
 
 // delete data ibu
 $routes->get('/admin/hapus-data-ibu/(:num)', 'AdminController::deleteIbu/$1');

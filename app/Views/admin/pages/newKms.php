@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <?php $role = session()->get('level'); ?>
-<?php if ($role != 'admin') : ?>
+<?php if ($role != 'admin'): ?>
     <?php return redirect()->to('/forbidden'); ?>
 <?php endif; ?>
 
@@ -25,8 +25,10 @@
                                 <label>Data Ibu</label>
                                 <select name="id_user" id="id_user" class="form-control">
                                     <option value="">Pilih Ibu</option>
-                                    <?php foreach ($ibu as $i) : ?>
-                                        <option value="<?= $i['id_user'] ?>"><?= $i['nama_user'] ?></option>
+                                    <?php foreach ($ibu as $i): ?>
+                                        <option value="<?= $i['id_user'] ?>">
+                                            <?= $i['nama_user'] . ' (' . $i["kode_bayi"] . '/' . $i["nama_bayi"] . ')' ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

@@ -41,6 +41,7 @@
 
                                         <td><?= $value['created_at'] ?></td>
                                         <td>
+                                            <a href="<?= base_url('admin/edit-ibu?id=') . $value['id_user']; ?>" class="btn btn-warning">Edit</a>
                                             <a href="<?= base_url('admin/hapus-data-ibu/') . $value['id_user']; ?>" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>

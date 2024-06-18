@@ -43,7 +43,7 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="data-klasifikasi">
                         <table class="table table-striped table-hover" id="table1">
                             <thead>
                                 <tr>
@@ -59,25 +59,10 @@
                                     <th>Precision</th>
                                     <th>Recall</th>
                                     <th>Status Gizi</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($klasifikasi as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $key + 1 ?></td>
-                                        <td><?= $value['jenis_kelamin'] === 'L' ? 'Laki-laki' : 'Perempuan' ?></td>
-                                        <td><?= $value['umur'] ?></td>
-                                        <td><?= $value['lingkar_kepala'] ?></td>
-                                        <td><?= $value['berat_badan'] ?></td>
-                                        <td><?= $value['tinggi_badan_cm'] ?></td>
-                                        <td><?= $value['tinggi_badan_m'] ?></td>
-                                        <td><?= $value['imt'] ?></td>
-                                        <td><?= !empty($value['accuracy']) ? $value['accuracy'] . '%' : '-' ?></td>
-                                        <td><?= !empty($value['precision']) ? $value['precision'] . '%' : '-' ?></td>
-                                        <td><?= !empty($value['recall']) ? $value['recall'] . '%' : '-' ?></td>
-                                        <td><?= $value['status_gizi'] ?></td>
-                                    </tr>
-                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
