@@ -186,8 +186,22 @@ class AdminController extends BaseController
         $model = new \App\Models\DataKlasifikasi();
         $data = $model->orderBy('id_klasifikasi', 'DESC')->findAll();
 
+        $AiController = new AiController();
+
+        $dataKlasifikasi = [];
+        foreach ($data as $klasifikasi) {
+            $imt = $this->calculateImt($klasifikasi['berat_badan'], $klasifikasi['tinggi_badan_cm']);
+            $result = $AiController->directMethod([
+                'imt' => $imt,
+            ]);
+            $klasifikasi['accuracy'] = $result['accuracy'] ?? '-';
+            $klasifikasi['precision'] = $result['precision'] ?? '-';
+            $klasifikasi['recall'] = $result['recall'] ?? '-';
+            $dataKlasifikasi[] = $klasifikasi;
+        }
+
         return $this->response->setJSON([
-            'data' => $data,
+            'data' => $dataKlasifikasi,
         ])->setStatusCode(200);
     }
 
