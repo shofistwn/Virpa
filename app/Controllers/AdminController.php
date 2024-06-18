@@ -798,31 +798,14 @@ class AdminController extends BaseController
         $data['role'] = session()->get('level');
         $data['name'] = session()->get('nama_user');
 
-        // get data bayi berat badan dan umur where id_user = session id_user
         $bayiModel = new \App\Models\BayiModel();
-        $data['bayi'] = $bayiModel->where('id_user', $id_user)->findAll();
+        $data['latest_bayi'] = $bayiModel->find($id_user);
 
-        // get latest bayi data
-        $data['latest_bayi'] = end($data['bayi']);
-        // sort data bayi by umur
-        usort($data['bayi'], function ($a, $b) {
-            return $a['umur'] - $b['umur'];
-        });
-
-        // berikan saya data berat dan umur bayinya perbulan dan jadiin array
         $beratArr = [];
-        $umurArr = [];
 
-        foreach ($data['bayi'] as $key => $value) {
-            $beratArr[$key] = ['x' => $value['umur'], 'y' => $value['imt'], 'status_gizi' => $value['status_gizi']];
-        }
+        $beratArr[0] = ['x' => $data['latest_bayi']['umur'], 'y' => $data['latest_bayi']['imt'], 'status_gizi' => $data['latest_bayi']['status_gizi']];
 
         $data['grafik'] = $beratArr;
-
-        // $data['berat'] = '[' . implode(',', $beratArr) . ']';
-        $data['umur'] = '[' . implode(',', $umurArr) . ']';
-
-
 
         if ($data['latest_bayi']['jenis_kelamin'] == 'L') {
             $data['ideal'] = [
@@ -1441,6 +1424,7 @@ class AdminController extends BaseController
                 ]
             ];
         }
+
         return view('admin/pages/newKmsOnline', $data);
     }
 

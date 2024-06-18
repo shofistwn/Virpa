@@ -26,7 +26,7 @@
                                 <select name="id_user" id="id_user" class="form-control">
                                     <option value="">Pilih Ibu</option>
                                     <?php foreach ($ibu as $i): ?>
-                                        <option value="<?= $i['id_user'] ?>">
+                                        <option value="<?= $i['id_bayi'] ?>">
                                             <?= $i['nama_user'] . ' (' . $i["kode_bayi"] . '/' . $i["nama_bayi"] . ')' ?>
                                         </option>
                                     <?php endforeach; ?>

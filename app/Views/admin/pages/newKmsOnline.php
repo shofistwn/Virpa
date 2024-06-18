@@ -963,12 +963,12 @@ foreach ($refMakan as $makanan) {
                                     <p>harus tetap menjaga pola makan dengan tetap memperhatikan angka kecukupan gizi setiap hari,
                                         balita dengan umur <b><?= $latest_bayi['umur'] ?></b> bulan memiliki berat badan ideal <b><?= $bbIdeal ?></b> kg dan tinggi badan <b><?= $tbIdeal ?></b> dengan status gizi NORMAL
                                     </p>
-                                <?php } elseif ($latest_bayi['status_gizi'] == "Gizi Kurang" || $latest_bayi['status_gizi'] == "Gizi Kurang") { ?>
+                                <?php } elseif ($latest_bayi['status_gizi'] == "Gizi Buruk" || $latest_bayi['status_gizi'] == "Gizi Kurang") { ?>
                                     <p>
                                         harus mengubah pola makan menjadi lebih banyak dengan tetap memperhatikan angka kecukupan gizi setiap hari,
                                         balita dengan umur <b><?= $latest_bayi['umur'] ?></b> bulan memiliki berat badan ideal <b><?= $bbIdeal ?></b> kg dan tinggi badan <b><?= $tbIdeal ?></b> dengan status gizi NORMAL
                                     </p>
-                                <?php } elseif ($latest_bayi['status_gizi'] == "Gizi Lebih" || $latest_bayi['status_gizi'] == "Obese") { ?>
+                                <?php } elseif ($latest_bayi['status_gizi'] == "Beresiko Gizi Lebih" || $latest_bayi['status_gizi'] == "Gizi Lebih" || $latest_bayi['status_gizi'] == "Obese") { ?>
                                     <p>
                                         harus mengubah pola makan menjadi lebih berkurang dengan tetap memperhatikan angka kecukupan gizi setiap hari,
                                         balita dengan umur <b><?= $latest_bayi['umur'] ?></b> bulan memiliki berat badan ideal <b><?= $bbIdeal ?></b> kg dan tinggi badan <b><?= $tbIdeal ?></b> dengan status gizi NORMAL
