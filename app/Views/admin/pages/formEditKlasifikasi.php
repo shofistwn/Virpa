@@ -11,6 +11,11 @@
     <div class="row match-height">
         <div class="col-md-12 col-12">
             <div class="card">
+                <?php if (session()->has('error')): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= session('error') ?>
+                    </div>
+                <?php endif; ?>
                 <div class="card-header">
                     <h4 class="card-title">Edit Klasifikasi</h4>
                 </div>
@@ -56,17 +61,6 @@
                             <label for="lingkar_kepala">Lingkar Kepala (cm)</label>
                             <input type="number" step="0.01" class="form-control" id="lingkar_kepala"
                                 name="lingkar_kepala" value="<?= $klasifikasi['lingkar_kepala'] ?? '' ?>" min="1">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="status_gizi">Status Gizi</label>
-                            <select class="form-control" id="status_gizi" name="status_gizi">
-                                <option value="" selected disabled>Pilih Status Gizi</option>
-                                <?php foreach ($statusGizi as $status): ?>
-                                    <option value="<?= $status ?>" <?php echo $klasifikasi['status_gizi'] == $status ? 'selected' : '' ?>><?= $status ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
                         </div>
 
                         <div class="card-footer d-flex gap-2">

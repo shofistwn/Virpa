@@ -132,7 +132,13 @@ class AdminController extends BaseController
         $berat_badan = $this->request->getPost('berat_badan');
         $tinggi_badan = $this->request->getPost('tinggi_badan');
         $lingkar_kepala = $this->request->getPost('lingkar_kepala');
-        $status_gizi = $this->request->getPost('status_gizi');
+
+        $imt = $this->calculateImt($berat_badan, $tinggi_badan);
+
+        $AiController = new AiController();
+        $result = $AiController->directMethod([
+            'imt' => $imt,
+        ]);
 
         $data = array(
             'jenis_kelamin' => $jenis_kelamin,
@@ -141,18 +147,16 @@ class AdminController extends BaseController
             'tinggi_badan_cm' => $tinggi_badan,
             'tinggi_badan_m' => ($tinggi_badan ?? 0) / 100,
             'lingkar_kepala' => $lingkar_kepala,
-            'imt' => $this->calculateImt($berat_badan, $tinggi_badan),
-            'status_gizi' => $status_gizi,
+            'imt' => $imt,
+            'status_gizi' => $result['status_gizi'][0]['status_gizi'],
         );
 
         try {
             $model = new \App\Models\DataKlasifikasi();
             $model->update($id, $data);
         } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'status' => false,
-                'message' => $e->getMessage(),
-            ])->setStatusCode(500);
+            session()->setFlashdata('error', $e->getMessage());
+            return redirect()->to(base_url('admin/proses-klasifikasi'));
         }
 
         session()->setFlashdata('success_form', 'Data klasifikasi berhasil diubah');
