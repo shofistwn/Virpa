@@ -213,6 +213,7 @@
     });
 </script>
 <?php if (uri_string() == 'user/kms-online' || uri_string() == 'admin/lihat-kms'): ?>
+
     <script>
         // Your data array
         <?php if ($latest_bayi['jenis_kelamin'] == "L"): ?>
@@ -1432,11 +1433,37 @@
             ];
         <?php endif; ?>
 
+        const umur = <?php echo $latest_bayi['umur']; ?>;
+
+        function categorizeAge(age) {
+            if (age >= 0 && age <= 5) {
+                return "0-5";
+            } else if (age >= 6 && age <= 11) {
+                return "6-11";
+            } else if (age >= 12 && age <= 36) {
+                return "12-36";
+            } else if (age >= 37 && age <= 72) {
+                return "37-72";
+            } else {
+                return "Out of range";
+            }
+        }
+
+        function filterByAgeRange(data, ageRange) {
+            return data.filter(item => {
+                const age = parseInt(item.umur);
+                return categorizeAge(age) === ageRange;
+            });
+        }
+
+        const ageRangeToFilter = categorizeAge(umur)
+        const newData = filterByAgeRange(jsonData, ageRangeToFilter);
+
         // Extract labels and datasets from the data
-        var labels = jsonData.map(item => item.umur);
-        var datasets = Object.keys(jsonData[0]).slice(1).map(key => ({
+        var labels = newData.map(item => item.umur);
+        var datasets = Object.keys(newData[0]).slice(1).map(key => ({
             label: key,
-            data: jsonData.map(item => parseFloat(item[key])),
+            data: newData.map(item => parseFloat(item[key])),
             borderColor: getRandomColor(),
             backgroundColor: 'transparent',
             borderWidth: 2,
@@ -1626,6 +1653,7 @@
                 yAxisID: `y${i}`,
 
             });
+            console.log(lineChartData.datasets[i].data);
         }
 
         // Scatter plot dataset
