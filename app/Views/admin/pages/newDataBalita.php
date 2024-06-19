@@ -55,12 +55,25 @@
                                         <td><?= $value['berat_badan'] ?></td>
                                         <td><?= $value['tinggi_badan'] ?></td>
                                         <td><?= $value['imt'] ?></td>
-                                        <td><?= $value['status_gizi'] ?></td>
                                         <td>
+                                            <?= $value['status_gizi'] ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($value['jenis_kelamin'] === 'L'): ?>
+                                                <button type="button" class="d-block btn btn-sm btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#modalLaki">
+                                                    Cara Menghitung
+                                                </button>
+                                            <?php else: ?>
+                                                <button type="button" class="d-block btn btn-sm btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#modalPerempuan">
+                                                    Cara Menghitung
+                                                </button>
+                                            <?php endif; ?>
                                             <a href="<?= base_url('admin/edit-data-bayi/') . $value['id_bayi']; ?>"
-                                                class="btn btn-warning">Edit</a>
+                                                class="d-block btn btn-warning my-2">Edit</a>
                                             <a href="<?= base_url('admin/hapus-data-bayi/') . $value['id_bayi']; ?>"
-                                                class="btn btn-danger" onclick="return confirmDelete()">Delete</a>
+                                                class="d-block btn btn-danger" onclick="return confirmDelete()">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -70,6 +83,42 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <div class="modal fade" id="modalLaki" tabindex="-1" aria-labelledby="modalLakiLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLakiLabel">Modal L</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPerempuan" tabindex="-1" aria-labelledby="modalPerempuanLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalPerempuanLabel">Modal P</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
