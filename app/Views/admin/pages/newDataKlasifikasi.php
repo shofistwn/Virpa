@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 
 <?php $role = session()->get('level'); ?>
-<?php if ($role != 'admin') : ?>
+<?php if ($role != 'admin'): ?>
     <?php return redirect()->to('/forbidden'); ?>
 <?php endif; ?>
 
@@ -25,7 +25,8 @@
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        <canvas id="barChartKlasifikasi" style="min-height: 250px; height: 350px; max-height: 450px; max-width: 100%;"></canvas>
+                        <canvas id="barChartKlasifikasi"
+                            style="min-height: 250px; height: 350px; max-height: 450px; max-width: 100%;"></canvas>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -55,9 +56,6 @@
                                     <th>Tinggi Badan (cm)</th>
                                     <th>Tinggi Badan (m)</th>
                                     <th>IMT</th>
-                                    <th>Akurasi</th>
-                                    <th>Precision</th>
-                                    <th>Recall</th>
                                     <th>Klasifikasi</th>
                                     <th>Aksi</th>
                                 </tr>

@@ -194,9 +194,6 @@ class AdminController extends BaseController
             $result = $AiController->directMethod([
                 'imt' => $imt,
             ]);
-            $klasifikasi['accuracy'] = $result['accuracy'] ?? '-';
-            $klasifikasi['precision'] = $result['precision'] ?? '-';
-            $klasifikasi['recall'] = $result['recall'] ?? '-';
             $dataKlasifikasi[] = $klasifikasi;
         }
 

@@ -50,9 +50,6 @@ function fetchData() {
         { "data": "tinggi_badan_cm", "render": data => formatNumber(data, 'cm') },
         { "data": "tinggi_badan_m", "render": data => formatNumber(data, 'm') },
         { "data": "imt", "render": data => formatNumber(data) },
-        { "data": "accuracy" },
-        { "data": "precision" },
-        { "data": "recall" },
         { "data": "status_gizi", "render": data => data ?? '-' },
         {
           "data": "id_klasifikasi",
