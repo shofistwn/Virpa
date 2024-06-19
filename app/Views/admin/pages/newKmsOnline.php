@@ -42,7 +42,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        <canvas id="combinedChart" style="width: 100%; height: 400px;"></canvas>
+                        <canvas id="combinedChart" style="width: 100%; height: 600px;"></canvas>
 
                     </div>
                 </div>
